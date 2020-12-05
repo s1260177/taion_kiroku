@@ -11,9 +11,11 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
 
     @IBOutlet weak var taionList: UIPickerView!
     
-    var taion_list = [
-    "36.0","36.1","36.2","36.3","36.4","36.5","36.6","36.7","36.8","36.9","37.0","37.1","37.2","37.3","37.4","37.5"
-    ]
+    
+    @IBOutlet weak var nameList: UIPickerView!
+    
+
+    var list = [[String]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +24,25 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         taionList.delegate = self
         taionList.dataSource = self
         
+        nameList.delegate = self
+        nameList.dataSource = self
+        
+        for _ in 0 ... 1{
+                    list.append([])
+                }
+        
+        list[0] = [
+            "aida","uchida","fujita"
+            ]
+        
+        list[1] = [
+            "36.0","36.1","36.2","36.3","36.4","36.5","36.6","36.7","36.8","36.9","37.0","37.1","37.2","37.3","37.4","37.5"
+        ]
+        
     }
         
+    
+    
         // UIPickerViewの列の数
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1
@@ -32,15 +51,25 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         // UIPickerViewの行数、リストの数
         func pickerView(_ pickerView: UIPickerView,
                         numberOfRowsInComponent component: Int) -> Int {
-            return taion_list.count
+            if pickerView == nameList{
+                
+                return list[0].count
+            }else{
+                return list[1].count
+            }
         }
         
         // UIPickerViewの最初の表示
         func pickerView(_ pickerView: UIPickerView,
                         titleForRow row: Int,
                         forComponent component: Int) -> String? {
+            if pickerView == nameList{
+                
+                return list[0][row]
+            }else{
+                return list[1][row]
+            }
             
-            return taion_list[row]
         }
 
 }
