@@ -16,9 +16,13 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var taion: UITextField!
+    
     @IBOutlet weak var date_display: UITextField!
+    //UIDatePickerを定義するための変数
+      var datePicker: UIDatePicker = UIDatePicker()
     
     var list = [[String]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -44,6 +48,10 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         ]
         
         //出力
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy年MM月dd日"
+        
+        date_display.text = formatter.string(from: datePicker.date)
         name.text="???"
         taion.text="???"
     }
@@ -88,6 +96,9 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
             //date_display.text=date
         }
     
+       
+  
+
     @IBAction func record(_ sender: Any) {
     }
 }
